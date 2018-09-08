@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <!--Load the AJAX API-->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+
+      // Load the Visualization API and the corechart package.
+      google.charts.load('current', {'packages':['corechart']});
+
+      // Set a callback to run when the Google Visualization API is loaded.
+      google.charts.setOnLoadCallback(drawChart);
+      google.charts.setOnLoadCallback(drawGID);
+
+      // Callback that creates and populates a data table,
+      // instantiates the Line chart, passes in the data and
+      // draws it.
+      function drawChart() {
+
+        // Create the data table.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Year');
+        data.addColumn('number', 'Canada');
+        data.addColumn('number', 'China');
+        data.addColumn('number', 'France');
+        data.addColumn('number', 'India');
+        data.addColumn('number', 'Japan');
+        data.addColumn('number', 'Mexico');
+        data.addColumn('number', 'Sudan');
+        data.addColumn('number', 'Sweden');
+        data.addColumn('number', 'Thailand');
+        data.addColumn('number', 'United States of America');
+        data.addRows([
+        ['2000-2005',1.516,1.550,1.882,3.140,1.298,2.610,5.300,1.670,1.603,2.042],
+        ['2010-2015',1.610,1.600,1.982,2.438,1.409,2.290,4.750,1.902,1.535,1.877],
+        ['2020-2025',1.557,1.664,1.966,2.191,1.535,2.004,4.146,1.914,1.414,1.893],
+        ['2030-2035',1.598,1.706,1.956,2.019,1.619,1.815,3.654,1.920,1.474,1.903],
+        ['2040-2045',1.642,1.736,1.951,1.900,1.676,1.731,3.267,1.924,1.554,1.910],
+        ['2050-2055',1.683,1.758,1.947,1.829,1.714,1.714,2.971,1.927,1.620,1.914],
+        ['2060-2065',1.715,1.774,1.946,1.790,1.743,1.723,2.736,1.930,1.672,1.917]
+        ]);
+
+        // Set chart options
+        var options = {'title':'Total fertility rate trend (live births per woman)',
+                       'curveType': 'function',
+                       'width':600,
+                       'height':600,
+                       'hAxis': {
+                          title: 'Year(s)'
+                        },
+                        'vAxis': {
+                          title: 'Fertility Rate'
+                        }
+                      };
+
+        // Instantiate and draw our chart, passing in some options.
+        var chart = new google.visualization.LineChart(document.getElementById('pic3'));
+        chart.draw(data, options);
+    }
+    </script>
+    
+    <style>
+        body
+        {
+            background-color:#f8f5ec;
+        }
+        img {
+            max-width: 100%;
+            padding: 5px;
+            position:relative;
+        }
+
+        iframe {
+            max-width: 100%;
+            padding: 5px;
+            position:relative;
+        }
+
+        #pic3 {
+            max-width: 100%;
+            padding: 5px;
+            position:relative;
+        }
+    </style>
+  </head>
+
+  <body>
+    <h1>Visualization for Total fertility rate trend (live births per woman)</h1>
+    <p>Data comes from <a href="http://data.un.org">UN data of your choice containing data over time</a>. 
+        <br>It displays key demographic indicators for 10 countries from 2000 to 2065.
+        <br>10 countries are: Canada, China, France, India, Japan, Mexico, Sudan, Sweden, Thailand and United States of America.</p>
+    <!--Div that will hold the charts-->
+    <div id="pic1">
+        <img src="https://github.com/INF554Fall18/a1-xiaruolei/blob/master/img.png?raw=true" alt="Pulpit rock" width="600" height="371">
+    </div>
+
+    <div id="pic2">
+        <iframe width="600" height="371" seamless frameborder="0" scrolling="no" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQDUe1q7boYQY8HESIvvGgeB4XVbeSrJehm4rKn8SnVnSi6Iw4NG8pr8ozHaq_774eaDGSswvT0U9cV/pubchart?oid=1450544464&amp;format=interactive"></iframe>
+    </div>
+    
+    <div id="pic3"></div>
+    <!-- <div id="chart_div"></div> -->
+  </body>
+</html>
