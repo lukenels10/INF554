@@ -1,0 +1,83 @@
+img {
+    margin-left: 100px; 
+    margin-right:auto; 
+    display:block;
+}
+
+#Canada {
+    stroke-width: "2";
+    fill: rgb(191, 105, 105);
+    fill-opacity: 1;
+    stroke: rgb(221, 221, 221);
+    stroke-opacity: 0;
+}  
+  
+#China {
+    fill: rgb(191, 156, 105); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#France {
+    fill: rgb(174, 191, 105); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#India {
+    fill: rgb(122, 191, 105); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#Japan {
+    fill: rgb(105, 191, 139); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#Mexico {
+    fill: rgb(105, 191, 191); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#Sudan {
+    fill: rgb(105, 139, 191); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#Sweden {
+    fill: rgb(122, 105, 191); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#Thailand {
+    fill: rgb(174, 105, 191); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+#America{
+    fill: rgb(191, 105, 156); 
+    fill-opacity: 1; 
+    stroke: rgb(221, 221, 221); 
+    stroke-opacity: 0;
+}
+
+
+.text {
+    font-size: 16px; 
+    font-family: Arial, Helvetica;
+}  
+

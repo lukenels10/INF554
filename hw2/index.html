@@ -1,0 +1,45 @@
+<html>
+<body>
+  <head>
+    <link rel="stylesheet" type="text/css" href="style.css">
+  </head>
+  <h1>Visualization for Total fertility rate trend (live births per woman)</h1>
+  
+  <div id="pic1" width="900" height="900">
+    <img src="pic1.svg" alt="Pulpit rock" width="600" height="600">
+  </div>
+
+  <svg width="900" height="900" xmlns="http://www.w3.org/2000/svg" version="1.1" transform="translate(50, 10)">
+    <!-- <g transform="translate(10, 10)"> -->
+      <g>
+        <circle id="Canada" cx="334.61927902350124" cy="468.8040514403668" r="76.04813055654405"/>
+        <circle id="China" cx="492.4204998228905" cy="468.8040514403668" r="76.8961844688501"/>
+        <circle id="France" cx="412.62744418245416" cy="614.9219408316229" r="84.73225244110735"/>
+        <circle id="India" cx="412.4946225366148" cy="295.11087538985464" r="109.44697583061357"/>
+        <circle id="Japan" cx="571.7501350310922" cy="598.602696793324" r="70.36817506128342"/>
+        <circle id="Mexico" cx="223.29278020187272" cy="611.1233973288158" r="99.78360624003865"/>
+        <circle id="Sudan" cx="666.8307372697734" cy="328.33083746502996" r="142.19256113453434"/>
+        <circle id="Sweden" cx="226.31166264637804" cy="350.05583805728605" r="79.81732660308543"/>
+        <circle id="Thailand" cx="716.5948748231699" cy="548.0141727061198" r="78.19981093511292"/>
+        <circle id="America" cx="97.21641995934351" cy="465.1248174384693" r="88.26058684753797"/>
+      </g>
+      <g>
+        <text class="text" text-anchor="middle" x="334.61927902350124" y="468.8040514403668">Canada, 1.516</text>
+        <text class="text" text-anchor="middle" x="492.4204998228905" y="468.8040514403668">China, 1.55</text>
+        <text class="text" text-anchor="middle" x="412.62744418245416" y="614.9219408316229">France, 1.882</text>
+        <text class="text" text-anchor="middle" x="412.4946225366148" y="295.11087538985464">India, 3.14</text>
+        <text class="text" text-anchor="middle" x="571.7501350310922" y="598.602696793324">Japan, 1.298</text>
+        <text class="text" text-anchor="middle" x="223.29278020187272" y="611.1233973288158">Mexico, 2.61</text>
+        <text class="text" text-anchor="middle" x="666.8307372697734" y="328.33083746502996">Sudan, 5.3</text>
+        <text class="text" text-anchor="middle" x="226.31166264637804" y="350.05583805728605">Sweden, 1.67</text>
+        <text class="text" text-anchor="middle" x="716.5948748231699" y="548.0141727061198">Thailand, 1.603</text>
+        <text class="text" text-anchor="middle" x="97.21641995934351" y="465.1248174384693">America, 2.042</text>
+      </g>
+    <!-- </g> -->
+  </svg>
+
+  <svg id="chart" width="900" height="900" transform="translate(50, 10)"></svg>
+  <script src="chart.js"></script>
+
+</body>
+</html>
