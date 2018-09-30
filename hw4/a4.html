@@ -1,0 +1,160 @@
+<html>
+<head>
+  <script src="node_modules/d3/dist/d3.min.js"></script>
+</head>
+<style>
+  #table1{
+    /* border: 1px solid black; */
+    border-collapse: collapse;
+    vertical-align: middle;
+  }
+  /* tr{
+    border: 2px solid green;
+  } */
+  td{
+    border: 1px solid black;
+    text-anchor: middle;
+    text-align:center;
+  }
+
+  table,svg{
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  h1, h2, p{
+    text-align: center;  
+  }
+
+  h2 {
+    margin-top: 50px
+  }
+
+  p{
+    /* text-indent:2em;  */
+    font-size: 16px;
+  }
+
+</style>
+<body>
+  <h1>Rural population (% of total population) visualization</h1> 
+  <p>From <a href=https://data.worldbank.org>World Bank Open Data</a>, I download Rural population (% of total population) data for 20 countries in the year of 2017.</p>  
+  
+  <h2>HTML table</h2>
+  <p>Create an HTML table for rural population percentage and for each line, first column represents a country, second column represents its rural population (% of total population).</p>
+  <table width="602px" height="400px" id="table1"></table>
+  
+  <h2>Bar Chart</h2>
+  <p>Create a SVG bar chart for rural population percentage: X axis represents countries, and the height of bar represents its rural population (% of total population).</p>
+  <svg width="602px" height="400px" id="chart2">
+      <line x1="0" y1="400" x2="602" y2="400" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="400" stroke="black" stroke-width="2"/>
+  </svg>
+  
+  <h2>Scatter Plot</h2>
+  <p>Create a scatterplot for rural population percentage: X axis represents countries, and Y axis represents its rural population (% of total population).</p>
+  <svg width="602px" height="400px" id="chart3">
+      <line x1="0" y1="400" x2="602" y2="400" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="400" stroke="black" stroke-width="2"/>
+  </svg>
+  
+  <h2>Bubble Chart</h2>
+  <p>Create a Bubble Chart for rural population percentage: X axis represents countries, and Y axis and radius represent its rural population (% of total population).</p>
+  <svg width="602px" height="400px" id="chart4">
+      <line x1="0" y1="400" x2="602" y2="400" stroke="black" stroke-width="2"/>
+      <line x1="0" y1="0" x2="0" y2="400" stroke="black" stroke-width="2"/>
+  </svg>
+
+  <script>
+    //html table
+    d3.csv("data.csv").then(function(data) {
+      console.log(data)
+      var table = d3.select('#table1');
+      //head
+      var columns = ['Country', 'Rural population (% of total population)'];
+      table.append('thead')
+          .append('tr')
+          .style('background', 'gainsboro')
+          .selectAll('td')
+          .data(columns)
+          .enter()
+          .append('td') 
+          .text(function(d) {return d; })
+          .style('font-size', '18px')
+          .style('font-weight', 'bold')
+      //body
+      table.append('tbody')
+        .selectAll('tr')
+        .data(data)
+        .enter()
+        .append('tr')
+        .selectAll('td')
+        .data(function(d) { return [d.Country, d.Population]; })
+        .enter()
+        .append('td')
+        .text(function(d) { return d; })        
+    });
+    
+    //bar chart
+    d3.csv("data.csv")
+      .then(function (data) {
+        console.log(data)
+        var svg = d3.select('#chart2')
+          .selectAll('rect')
+          .data(data)
+          .enter()
+          .append('rect')
+          .attr('x', function (d, i) { return 2 + i * 30; })
+          .attr('y', function (d) { return 398 - d.Population * 5; })
+          .attr('width', function (d) { return 28; })
+          .attr('height', function (d) { return d.Population * 5; })
+          .attr('fill', function (d) { return 'rgb(' + 0 + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'; })
+    });
+    
+    //scatter plot
+    d3.csv("data.csv")
+      .then(function (data) {
+        console.log(data)
+        var svg = d3.select('#chart3')
+          .selectAll('circle')
+          .data(data)
+          .enter()
+          .append('circle')
+          .attr('cx', function (d, i) { return 15 + i * 30; })
+          .attr('cy', function (d) { return 400 - d.Population * 5; })
+          .attr('r', 5)
+          .attr('fill', function (d) { return 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'; })
+    });
+
+    //bubble chart
+    d3.csv("data.csv")
+      .then(function (data) {
+        console.log(data)
+        var svg = d3.select('#chart4')
+        svg.selectAll('circle')
+          .data(data)
+          .enter()
+          .append('circle')
+          .attr('cx', function (d, i) { return 15 + i * 30; })
+          .attr('cy', function (d) { return 400 - d.Population * 5; })
+          .attr('r', function (d) { return d.Population * 0.8; })
+          .attr('fill', function (d) { return 'rgb(' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ',' + (Math.floor(Math.random() * 256)) + ')'; })
+        svg.selectAll('text')
+          .data(data)
+          .enter()
+          .append('text')
+          .attr('x', function (d, i) { return 15 + i * 30; })
+          .attr('y', function (d) { return 400 - d.Population * 5; })
+          .attr('fill', 'black')
+          .attr('font-size', '8px')
+          .attr('text-anchor', 'middle')
+          .attr('alignment-baseline', 'middle')
+          .text(function (d) { return d.Country; })
+    });
+    </script>
+</body>
+
+</html>
