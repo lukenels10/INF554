@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Assignment 7</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="node_modules/d3/dist/d3.min.js"></script>
+</head>
+<body>
+    <div class="container" id="description">
+        <h1>Assignment 7</h1>
+        <li>Total fertility rate (live births per woman) is the number of children who would be born per woman.</li>
+        <li>The following bar chart shows total fertility rate (live births per woman) in 2010-2015.</li>
+        <li>Data Source: <a href=http://data.un.org>UNdata</a>.</li> 
+        <li>Published Page: <a href=http://www-scf.usc.edu/~ruoleixi/a7.html>URL</a>.</li> 
+    </div>
+    
+    <div class="container" id="chart">
+            
+        <!-- <h2 id="title">Total fertility rate (live births per woman) in 2010-2015</h2> -->
+        <button type="button" class="btn btn-primary" id="rate_ascending">sort ascending by value</button>
+        <button type="button" class="btn btn-primary" id="rate_descending">sort descending by value</button>
+        <button type="button" class="btn btn-primary" id="country_alphabetical">sort alphabetically</button>
+        <button type="button" class="btn btn-success" id="top5">top 5</button>
+        <button type="button" class="btn btn-success" id="bottom5">bottom 5</button>
+        <button type="button" class="btn btn-success" id="all10">all 10</button>   
+        <button type="button" class="btn btn-danger" id="reset">reset</button>
+    </div>
+
+    <script type="text/javascript" src="chart.js"></script>
+
+
+</body>
+</html>
+

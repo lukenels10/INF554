@@ -1,0 +1,39 @@
+h1, h2, div {
+    text-align: center; 
+}
+
+h1 {
+    margin-bottom: 30px;
+}
+h2 {
+    margin-top: 30px; 
+}
+
+li {
+    text-indent:200px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.bar {
+    fill: #cce6ff   ; 
+    shape-rendering: crispEdges;}
+
+text.xlabel, text.ylabel {
+    font-size: 14px;
+    font-weight: bold;
+    text-anchor: middle; }
+
+text.title {
+    font-size: 30px;
+    font-weight: bold;
+    text-anchor: middle; }
+
+text.label {
+    font-size: 10px;
+    fill: black;
+    text-anchor: middle;}
+
+.container {
+    margin-bottom: 20px;
+}
