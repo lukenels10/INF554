@@ -1,0 +1,152 @@
+---
+title: "homework 10"
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r message = FALSE}
+library(ggplot2)
+library(plyr)
+library(plotly)
+library(ggmap)
+```
+
+```{r}
+df <- read.csv("data/sample_data.csv")
+```
+
+# ggplot2 basic plots
+
+## Scatterplot
+
+```{r}
+ggplot(df, aes(zipcode, city_id)) + 
+  geom_point() +
+  geom_jitter() +
+  labs(title = "Zipcode and City Id ", x = "zipcode", y = "city id")
+```
+
+```{r}
+mysample <- df[sample(1:nrow(df), 10, replace=FALSE),]
+```
+
+## Scatterplot with labels (geom_text)
+
+```{r}
+ggplot(mysample, aes(zipcode, city_id)) + 
+  geom_text(aes(label = day_of_week), size = 2) +
+  labs(title = "Zipcode and City Id ", x = "zipcode", y = "city id")
+```
+
+
+## Bar chart
+
+```{r}
+ggplot(df, aes(day_of_week)) + 
+  geom_bar() + 
+  labs(title = "Collision Counts by Day of Week")
+```
+
+```{r}
+computed_df <- ddply(df, .(day_of_week), nrow)
+```
+
+## Line chart
+
+The average salary for different years of service.
+
+```{r}
+ggplot(computed_df, aes(day_of_week, V1)) + 
+  geom_line(stat="identity", color = "blue") +
+  labs(title = "Collision Counts by Day of Week", x = "day", y = "count")
+```
+
+## Area chart
+
+```{r}
+ggplot(computed_df, aes(day_of_week, V1)) + 
+  geom_area() +
+  labs(title = "Collision Counts by Day of Week", x = "day", y = "count")
+```
+
+## Dot plot
+
+```{r}
+ggplot(df, aes(x = day_of_week)) + 
+  geom_dotplot(binwidth = 0.05, method = "histodot") +
+  labs(title = "Collision Counts by Day of Week", x = "day", y = "count")
+```
+
+## Histogram
+
+```{r}
+ggplot(df, aes(x = day_of_week)) + 
+  geom_histogram(binwidth = 1) +
+  labs(title = "Collision Counts by Day of Week", x = "day", y = "count")
+```
+
+## Frequency polygon
+
+```{r}
+ggplot(df, aes(x = longitude)) + 
+  geom_freqpoly(color = "blue") +
+  labs(title = "Collision Counts by longitude", x = "longitude", y = "count")
+```
+
+## Boxplot
+
+```{r}
+ggplot(df, aes(city, day_of_week)) + 
+  geom_boxplot() +
+  labs(title = "Distribution about Collision between Day of Week and City", x = "city", y = "day") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+## Violin plot
+
+```{r}
+ggplot(df, aes(city, day_of_week)) + 
+  geom_violin() +
+  labs(title = "Distribution about Collision between Day of Week and City", x = "city", y = "day") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+# Facets
+
+```{r}
+ggplot(df, aes(city_id, event_id)) +
+  geom_point() +
+  facet_grid(cols = vars(day_of_week)) +
+  theme(legend.position="none") + 
+  labs(title = "City Id and Event Id in different days", y = "event id", x = "city id")
+```
+
+## ggplotly()
+
+```{r}
+ggplot(df,aes(zipcode, city_id, color = day_of_week)) + 
+  geom_point() + 
+  geom_jitter() +
+  labs(title = "Zipcode and City Id ", x = "zipcode", y = "city id")
+ggplotly()
+```
+
+## ggmap
+
+### Google map with points
+
+```{r}
+map <- read.csv("data/config.csv")
+map
+```
+
+
+```{r message = FALSE}
+bb <- c(left=-118.5482, bottom=33.6415, right=-118.0846, top=34.2130)
+la_county <- get_stamenmap(bbox=bb, maptype="toner")
+ggmap(la_county) + 
+  geom_point(data=map, aes(x=longitude, y=latitude), color="red", size=0.5) +
+  labs(x="Longitude", y="Latitude", title="Distribution of Censors")
+```
+

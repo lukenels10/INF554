@@ -1,0 +1,42 @@
+[
+    {
+        "country": "Canada",
+        "rate": 1.610
+    },
+    {
+        "country":"China",
+        "rate": 1.600
+    },
+    {
+        "country":"France",
+        "rate": 1.982
+    },
+    {
+        "country":"India",
+        "rate": 2.438
+    },
+    {   
+        "country":"Japan",
+        "rate": 1.409
+    },
+    {
+        "country":"Mexico",
+        "rate": 2.290
+    },
+    {   
+        "country":"Sudan",
+        "rate": 4.750
+    },
+    {   
+        "country":"Sweden",
+        "rate": 1.902
+    },
+    {
+        "country":"Thailand",
+        "rate": 1.535
+    },
+    {
+        "country":"United States",
+        "rate": 1.877
+    }
+]
