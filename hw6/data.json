@@ -1,0 +1,86 @@
+[
+  {
+    "Country": "Canada",
+    "Proportion": 17.817
+  },
+  {
+    "Country": "Australia",
+    "Proportion": 10.317
+  },
+  // {
+  //   "Country": "Canada",
+  //   "Proportion": 17.817
+  // },
+  {
+    "Country": "Switzerland",
+    "Proportion": 25.923
+  },
+  {
+    "Country": "China",
+    "Proportion": 42.097
+  },
+  {
+    "Country": "Cuba",
+    "Proportion": 22.7
+  },
+  {
+    "Country": "Spain",
+    "Proportion": 19.976
+  },
+  {
+    "Country": "France",
+    "Proportion": 20.022
+  },
+  {
+    "Country": "United Kingdom",
+    "Proportion": 16.927
+  },
+  {
+    "Country": "Greece",
+    "Proportion": 21.356
+  },
+  {
+    "Country": "Greenland",
+    "Proportion": 12.84
+  },
+  {
+    "Country": "India",
+    "Proportion": 66.465
+  },
+  {
+    "Country": "Ireland",
+    "Proportion": 36.166
+  },
+  {
+    "Country": "Israel",
+    "Proportion": 7.73
+  },
+  {
+    "Country": "Italy",
+    "Proportion": 30.723
+  },
+  {
+    "Country": "Japan",
+    "Proportion": 5.684
+  },
+  {
+    "Country": "Mexico",
+    "Proportion": 20.216
+  },
+  {
+    "Country": "Norway",
+    "Proportion": 19.01
+  },
+  {
+    "Country": "New Zealand",
+    "Proportion": 13.635
+  },
+  {
+    "Country": "Thailand",
+    "Proportion": 47.329
+  },
+  {
+    "Country": "United States",
+    "Proportion": 18.04
+  }
+]

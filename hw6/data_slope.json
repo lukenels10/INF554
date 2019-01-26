@@ -1,0 +1,52 @@
+[
+  {
+    "Country": "Australia",
+    "Start": 18.471,
+    "End": 10.317
+  },
+  {
+    "Country": "China",
+    "Start": 83.797,
+    "End": 42.097
+  },
+  {
+    "Country": "France",
+    "Start": 38.120,
+    "End": 20.022
+  },
+  {
+    "Country": "United Kingdom",
+    "Start": 21.556,
+    "End": 16.927
+  },
+  {
+    "Country": "India",
+    "Start": 82.076,
+    "End": 66.465
+  },
+  {
+    "Country": "Ireland",
+    "Start": 54.816,
+    "End": 36.166
+  },
+  {
+    "Country": "Italy",
+    "Start": 40.639,
+    "End": 30.723
+  },
+  {
+    "Country": "Japan",
+    "Start": 36.728,
+    "End": 5.684
+  },
+  {
+    "Country": "New Zealand",
+    "Start": 24.002,
+    "End": 13.635
+  },
+  {
+    "Country": "United States",
+    "Start": 30.004,
+    "End": 18.04
+  }
+]

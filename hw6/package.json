@@ -1,0 +1,23 @@
+{
+  "name": "a6-xiaruolei",
+  "version": "1.0.0",
+  "description": "Update this README as needed.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/INF554Fall18/a6-xiaruolei.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/INF554Fall18/a6-xiaruolei/issues"
+  },
+  "homepage": "https://github.com/INF554Fall18/a6-xiaruolei#readme",
+  "dependencies": {
+    "browser-sync": "^2.24.7",
+    "d3": "^5.7.0"
+  }
+}

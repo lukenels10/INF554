@@ -1,0 +1,280 @@
+<html>
+<head>
+  <script src="node_modules/d3/dist/d3.min.js"></script>
+</head>
+<style>
+  h1, h2{
+    text-align: center;  
+  }
+
+  li {
+    text-indent:50px;
+  }
+  
+  table, svg{
+    margin-bottom: 3em;
+    position: relative;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+
+  #table1{
+    border-collapse: collapse;
+  }
+
+  th, td{
+      /* border: 1px solid black; */
+      text-anchor: middle;
+      text-align:center;
+      padding: 8px;
+      border-bottom: 1px solid #ddd;
+  }
+
+  tr:hover {background-color:#f5f5f5;}
+
+/* .tick text {
+  font: 10px sans-serif;
+  transform: rotate(30deg);
+} */
+
+</style>
+<body>
+  <h1>Rural population (% of total population) visualization</h1> 
+  <li>From <a href=https://data.worldbank.org>World Bank Open Data</a>, I download Rural population (% of total population) data of 20 countries in the year of 1960 and 2017.</li>
+  <li>Rural population refers to people living in rural areas as defined by national statistical offices. It is calculated as the difference between total population and urban population.</li>
+  <li>Table, scatterplot and bar chart below describe Rural population (% of total population) of 20 countries in the year of 2017.</li>
+  <li>Slope graph below describes the trend of Rural population (% of total population) of 10 countries between year 1960 and 2017.</li>
+  <h2>HTML Table</h2>
+
+  <table width="602px" height="400px" id="table1"></table>
+  
+  <h2>Scatterplot</h2>
+  <svg id="chart2"></svg>
+
+  <h2>Bar chart</h2>
+  <svg id="chart3"></svg>
+
+  <h2>Slope Graph</h2>
+  <svg id="chart4"></svg>
+
+  <script type="text/javascript">
+    var f = d3.format(".3f");
+    //SVG table
+    d3.json("data.json").then(function(data) {
+      var table = d3.select('#table1');
+      //head
+      var columns = ['Country', 'Rural population (% of total population)'];
+      table.append('thead')
+          .append('tr')
+          .style('background', 'gainsboro')
+          .selectAll('th')
+          .data(columns)
+          .enter()
+          .append('th') 
+          .text(function(d) {return d; })
+      //body
+      table.append('tbody')
+        .selectAll('tr')
+        .data(data)
+        .enter()
+        .append('tr')
+        .selectAll('td')
+        .data(function(d) { return [d.Country, f(d.Proportion)]; })
+        .enter()
+        .append('td')
+        .text(function(d) { return d; })       
+    });
+
+    //scatterplot
+    d3.json("data.json").then(function(data) {
+      var margin = { top: 10, left: 50, bottom: 90, right: 50 };
+      var width = 800 - margin.left - margin.right;
+      var height = 400 - margin.top - margin.bottom;
+      var svg = d3.select('#chart2')
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ', ' + margin.top + ')');
+      var country = data.map(function(t){ return t.Country; });
+      var x = d3.scaleBand()
+        .domain(country)
+        .range([0, width]);
+      var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+      svg.selectAll('circle')
+        .data(data)
+        .enter()
+        .append('circle')
+        .attr('r', 5)
+        .attr('cx', function (d, i) { return x(d.Country); })
+        .attr('cy', function (d) { return y(d.Proportion); })
+        .attr('transform', 'translate(' + x.bandwidth()/2 + ', 0)')
+        .attr('fill', function (d) { return 'skyblue' });        
+      var xAxis = d3.axisBottom()
+        .scale(x)
+        .ticks(20, 'd');
+      svg.append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis)
+        .selectAll('text')  
+        .attr('text-anchor', 'start')
+        .attr('transform', 'rotate(25)');
+      var yAxis = d3.axisLeft()
+        .scale(y)
+        .ticks(10, 'd')
+      svg.append('g')
+        .attr('class', 'y axis')
+        .call(yAxis);    
+      d3.select('#chart2').append('text')
+        .attr('x', 400)
+        .attr('y', 380)
+        .attr('text-anchor', 'middle') 
+        .text('Country')
+      d3.select('#chart2').append('text') 
+        .attr('x', -160)
+        .attr('y', 15) 
+        .attr("text-anchor", "middle")
+        .text('Rural population (% of total population)')
+        .attr("transform", "rotate(-90)");
+    });
+
+    //bar chart
+    d3.json("data.json").then(function(data) {
+      var margin = {top: 10, right: 50, bottom: 90, left: 50};
+      var width = 800 - margin.left - margin.right,
+          height = 400 - margin.top - margin.bottom;
+      // var x = d3.scaleBand()
+      //   .domain(d3.range(0, 20))
+      //   .range([0, width])
+      //   .paddingInner(0.05);
+      var country = data.map(function(t){ return t.Country; });
+      var x = d3.scaleBand()
+        .domain(country)
+        .range([0, width])
+        .paddingInner(0.05);
+      var xAxis = d3.axisBottom()
+        .scale(x)
+        .ticks(20);
+      var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+      var yAxis = d3.axisLeft()
+        .scale(y);
+      var svg = d3.select("#chart3")
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      svg.selectAll('rect')
+        .data(data)
+        .enter()
+        .append('rect')
+        .attr('x', function (d, i) { return x(d.Country); })
+        .attr('y', function (d) { return y(d.Proportion); })
+        .attr('width', x.bandwidth)
+        .attr('height', function (d) { return height - y(d.Proportion); })
+        .style('fill', 'skyblue');
+      svg.append('g')
+        .attr('transform', 'translate(0,' + height + ')')
+        .call(xAxis)
+        .selectAll('text')  
+        .attr('text-anchor', 'start')
+        .attr('transform', 'rotate(25)');
+      svg.append('g')
+        .call(yAxis);
+      d3.select('#chart3').append('text')
+        .attr('x', 400)
+        .attr('y', 380)
+        .attr('text-anchor', 'middle') 
+        .text('Country')
+      d3.select('#chart3').append('text') 
+        .attr('x', -160)
+        .attr('y', 15) 
+        .attr("text-anchor", "middle")
+        .text('Rural population (% of total population)')
+        .attr("transform", "rotate(-90)");
+
+    });
+    
+    //slopegraph
+    d3.json("data_slope.json").then(function(data) {
+      console.log(data)
+      var margin = {top: 10, right: 100, bottom: 90, left: 100};
+      var width = 800 - margin.left - margin.right,
+          height = 800 - margin.top - margin.bottom;
+      var x = d3.scaleOrdinal()
+        .domain(["Start", "End"])
+        .range([0, width]);
+      var y = d3.scaleLinear()
+        .domain([0, 100])
+        .range([height, 0]);
+      var svg = d3.select("#chart4")
+        .attr('width', width + margin.left + margin.right)
+        .attr('height', height + margin.top + margin.bottom)
+        .append('g')
+        .attr('transform', 'translate(' + margin.left + ',' + margin.top + ')');
+      data.forEach(function(d) {
+        var StartPoint = {"x": x("Start"), "y": y(d.Start)}
+        var EndPoint = {"x": x("End"), "y": y(d.End)}
+        var line = [StartPoint, EndPoint]
+        console.log(line)
+        var lineFunction = d3.line()
+          .x(function (d) { return d.x; })
+          .y(function (d) { return d.y; });
+        
+        svg.append('path')
+          .attr("d", lineFunction(line))
+          .attr("stroke", "skyblue")
+          .attr("stroke-width", 2)
+          .attr("fill", "none")
+          // .attr('transform', 'translate(35, 0)');
+        svg.append('text')
+          .attr('x', x("Start") - 45)
+          .attr('y', y(d.Start))
+          .attr('text-anchor', 'end')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 8)
+          .text(d.Country)
+        svg.append('text')
+          .attr('x', x("Start") - 10)
+          .attr('y', y(d.Start))
+          .attr('text-anchor', 'end')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 8)
+          .text(f(d.Start))
+        svg.append('text')
+          .attr('x', x("End") + 45)
+          .attr('y', y(d.End))
+          .attr('text-anchor', 'start')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 8)
+          .text(d.Country)
+        svg.append('text')
+          .attr('x', x("End") + 10)
+          .attr('y', y(d.End))
+          .attr('text-anchor', 'start')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 8)
+          .text(f(d.End))
+        svg.append('text')
+          .attr('x', x("Start"))
+          .attr('y', y(90))
+          .attr('text-anchor', 'middle')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 10)
+          .text("1960")
+        svg.append('text')
+          .attr('x', x("End"))
+          .attr('y', y(90))
+          .attr('text-anchor', 'middle')
+          .attr('alignment-baseline', 'middle')
+          .attr('font-size', 10)
+          .text("2017")
+      }); 
+    });
+  </script>
+</body>
+</html>
